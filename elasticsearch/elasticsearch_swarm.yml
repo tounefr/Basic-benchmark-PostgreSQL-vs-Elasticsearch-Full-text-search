@@ -1,0 +1,21 @@
+version: '3'
+services:
+  elasticsearch:
+    image: agoryachev/docker-swarm-elasticsearch:5.2.2
+    deploy:
+      replicas: 3
+#    volumes:
+#      - ./elasticsearch_data:/usr/share/elasticsearch/data
+    environment:
+      - SERVICE_NAME=elasticsearch
+      - VIRTUAL_HOST=elasticsearch.lan
+      - VIRTUAL_PORT=9200
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - xpack.security.enabled=false
+
+  nginx:
+    image: jwilder/nginx-proxy
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro

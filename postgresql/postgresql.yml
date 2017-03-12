@@ -1,0 +1,44 @@
+version: '3'
+services:
+
+  postgresql:
+    image: postgres
+    deploy:
+      replicas: 2
+    volumes:
+      - ./postgres_db:/var/lib/postgresql/data
+      - ../datasets:/datasets
+    environment:
+      - POSTGRES_PASSWORD=azerty
+      - PG_TRUST_LOCALNET=true
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+      - PGDATA=/var/lib/postgresql/data
+
+  benchmark_app:
+    deploy:
+      replicas: 2
+    build: ../benchmark_app
+    links:
+      - postgresql:postgres
+
+  pgadmin:
+    image: thajeztah/pgadmin4
+    volumes:
+      - ./pgadmin:/pgadmin
+    ports:
+      - 5050:5050
+    links:
+      - postgresql
+
+  search_app:
+    build: ../search_app
+    links:
+      - postgresql:db
+    ports:
+      - 80:80
+    env_file:
+      - ../search_app/htdocs/.env
+    volumes:
+      - ../search_app/htdocs/:/var/www
+
