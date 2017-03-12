@@ -1,12 +1,12 @@
 # Basic benchmark PostgreSQL vs Elasticsearch
 ---
-For a project, i have to compare between PostgreSQL and Elasticsearch databases for full text searches.
-I have to setup a database cluster for a website supporting more than 5000 users simultaneously.
-I'm not an database administrator expert so i've to Googling a lot.
+For a project, i have to compare between PostgreSQL and Elasticsearch databases for full text searches.  
+I have to setup a database cluster for a website supporting more than 5000 users simultaneously.  
+I'm not an database administrator expert so i've to Googling a lot.  
 
-After some reading i've read that PostgreSQL and ElasticSearch are good full text searches solutions but i've not found which solution is best adapted for my needs.
-I will update this Git as soon as i'm getting better results.
-If you have any suggestions or remarks/questions, do not hesitate to submit an issue.
+After some reading i've read that PostgreSQL and ElasticSearch are good full text searches solutions but i've not found which solution is best adapted for my needs.  
+I will update this Git as soon as i'm getting better results.  
+If you have any suggestions or remarks/questions, do not hesitate to submit an issue.  
 
 ## Specifications
 ---
