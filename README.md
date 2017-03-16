@@ -44,15 +44,18 @@ If you have any suggestions or remarks/questions, do not hesitate to submit an i
 You must set Docker as an Docker Cluster : `docker swarm init`
 
 ##### > Set the local domain to access the Elasticsearch API
-    echo "127.0.0.1       elasticsearch.lan" >> /etc/host
-    
+    echo "127.0.0.1       elasticsearch.lan" >> /etc/hosts
+
+##### > Increase the virtual memory on the node ([more infos](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/vm-max-map-count.html))
+    sysctl -w vm.max_map_count=262144
+
 ##### > Start the cluster
     docker stack deploy -c ./elasticsearch/elasticsearch_swarm.yml benchmark
     
 ##### > Import the database
     echo "Importing the database in the background. This can take a while..." && ./elasticsearch/import_db.sh
     
-##### > Start the benchmark script
+##### > Start the benchmark script (you should waiting the import script ends before starting the benchmark)
     ./benchmark_app/stress.sh
 
 ##### > Stop and remove the cluster

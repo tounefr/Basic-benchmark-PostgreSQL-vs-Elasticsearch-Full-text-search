@@ -1,10 +1,11 @@
 
-FROM debian:jessie
+FROM alpine:3.5
 
-RUN apt-get update -y
-RUN apt-get install php5 php5-pgsql -y
+RUN apk update
+RUN apk add php5 php5-pgsql php5-pdo php5-pdo_pgsql
 
-ADD ./select.php /
-ADD ./words /
+COPY php.ini /usr/local/etc/php/
+COPY ./postgresql.php /
+COPY ./words /
 
-ENTRYPOINT php /select.php
+ENTRYPOINT php /postgresql.php

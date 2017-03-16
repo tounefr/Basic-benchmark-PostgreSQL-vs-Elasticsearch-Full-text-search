@@ -1,2 +1,5 @@
 search_app/
 .idea/
+postgresql/postgres_db/
+elasticsearch/elasticsearch_db/
+datasets/
