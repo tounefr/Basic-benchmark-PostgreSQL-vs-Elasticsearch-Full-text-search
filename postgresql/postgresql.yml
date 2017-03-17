@@ -30,15 +30,3 @@ services:
       - 5050:5050
     links:
       - postgresql
-
-  search_app:
-    build: ../search_app
-    links:
-      - postgresql:db
-    ports:
-      - 80:80
-    env_file:
-      - ../search_app/htdocs/.env
-    volumes:
-      - ../search_app/htdocs/:/var/www
-
